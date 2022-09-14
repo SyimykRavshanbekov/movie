@@ -15,7 +15,7 @@ public class FindAbleImpl implements FindAble{
     public void findMoviesByActor() {
         System.out.println("Write actor name:");
         String actorName = in.nextLine().trim();
-        List<Movie> movies = JsonIO.getMovies();
+        int counter = 0;
         for (int i = 0; i < JsonIO.getMovies().size(); i++) {
             for (int j = 0; j < JsonIO.getMovies().get(i).getCast().size(); j++) {
                 if (JsonIO.getMovies().get(i).getCast().get(j).getFullName().toLowerCase().equals(actorName.toLowerCase()) ||
@@ -23,8 +23,13 @@ public class FindAbleImpl implements FindAble{
                     System.out.println();
                     System.out.println("Movie: " + JsonIO.getMovies().get(i).getName());
                     System.out.println("Actor: " + JsonIO.getMovies().get(i).getCast().get(j).getFullName());
+                    counter++;
                 }
             }
+        }
+
+        if (counter==0){
+            System.out.println("THERE IS NO ONE MOVIE WITH THIS ACTOR!");
         }
     }
 

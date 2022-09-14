@@ -1,6 +1,6 @@
 package com.company.models;
 
-public class Cast {
+public class Cast implements Comparable<Cast>{
 
     private String fullName;
     private String role;
@@ -19,5 +19,10 @@ public class Cast {
                 "\nfullName = '" + fullName +
                 "\nrole = '" + role+
                 "\n";
+    }
+
+    @Override
+    public int compareTo(Cast o) {
+        return this.getFullName().compareTo(o.getFullName());
     }
 }

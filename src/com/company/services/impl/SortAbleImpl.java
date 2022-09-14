@@ -19,6 +19,7 @@ public class SortAbleImpl implements SortAble {
             System.out.println();
             System.out.println("--------------------FILM #"+n+"--------------------");
             System.out.println(i);
+            n++;
         }
     }
 
@@ -159,17 +160,14 @@ public class SortAbleImpl implements SortAble {
     }
 
     public void showActorRoles() {
-        List<Movie> movies = JsonIO.getMovies();
         oneOrTwo();
         int a = in.nextInt();
 
         if (a == 1){
             ArrayList<String> movies1 = new ArrayList<>();
-//            ArrayList<String> movies2 = new ArrayList<>();
             for (int i = 0; i < JsonIO.getMovies().size(); i++) {
                 for (int j = 0; j < JsonIO.getMovies().get(i).getCast().size(); j++) {
                     movies1.add("Actor name -> "+JsonIO.getMovies().get(i).getCast().get(j).getFullName() + "\nRole -> " + JsonIO.getMovies().get(i).getCast().get(j).getRole() + "\nMovie name -> " +JsonIO.getMovies().get(i).getName());
-//                    movies2.add(JsonIO.getMovies().get(i).getCast().get(j).getRole());
                 }
             }
 
@@ -187,20 +185,6 @@ public class SortAbleImpl implements SortAble {
 //                System.out.println(movies2.get(i));
                 System.out.println();
             }
-
-//            for (String s : movies1) {
-//                System.out.println(s);
-//            }
-
-//            for (int i = 0; i < movies1.size(); i++) {
-//                for (int j = 0; j < JsonIO.getMovies().get(i).getCast().size(); j++) {
-//                    if (JsonIO.getMovies().get(i).getCast().get(j).getFullName().equals(movies1.get(i))){
-//                        System.out.println("Actor name: " + JsonIO.getMovies().get(i).getCast().get(j).getFullName());
-//                        System.out.println("Full name: " + JsonIO.getMovies().get(i).getName());
-//                        System.out.println();
-//                    }
-//                }
-//            }
         }
         if (a == 2){
             ArrayList<String> movies1 = new ArrayList<>();
@@ -223,6 +207,52 @@ public class SortAbleImpl implements SortAble {
                 System.out.println();
             }
         }
+    }
+
+    public void showActorRoles1(){
+        oneOrTwo();
+        int a = in.nextInt();
+        List<Movie> movies = JsonIO.getMovies();
+        TreeSet<Cast> moviesTree = new TreeSet<>();
+
+        for (int i = 0; i < JsonIO.getMovies().size(); i++) {
+            moviesTree.addAll(JsonIO.getMovies().get(i).getCast());
+        }
+        if (a==1){
+            for (Cast cast: moviesTree) {
+                System.out.println("-----------------------------------");
+                System.out.println("Actor name: " + cast.getFullName());
+                for (int i = 0; i < movies.size(); i++) {
+                    for (int j = 0; j < movies.get(i).getCast().size(); j++) {
+                        if (cast.getFullName().equals(movies.get(i).getCast().get(j).getFullName())){
+                            System.out.println("movie name: " + movies.get(i).getName());
+                            System.out.println("role: " + movies.get(i).getCast().get(j).getRole());
+                        }
+                    }
+                }
+            }
+        }
+
+        TreeSet<Cast> moviesTree2 = (TreeSet<Cast>) moviesTree.descendingSet();
+        if (a == 2){
+            for (Cast cast: moviesTree2) {
+                System.out.println("-----------------------------------");
+                System.out.println("Actor name: " + cast.getFullName());
+                for (int i = 0; i < movies.size(); i++) {
+                    for (int j = 0; j < movies.get(i).getCast().size(); j++) {
+                        if (cast.getFullName().equals(movies.get(i).getCast().get(j).getFullName())){
+                            System.out.println("movie name: " + movies.get(i).getName());
+                            System.out.println("role: " + movies.get(i).getCast().get(j).getRole());
+                        }
+                    }
+                }
+            }
+        }
+
+        if (a > 2){
+            System.out.println("WRITE ONLY 1 OR 2");
+        }
+
     }
 
     static void oneOrTwo(){

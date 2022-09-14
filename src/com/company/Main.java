@@ -31,13 +31,16 @@ public class Main {
     }
 
     static void mainMethod(){
+        Scanner scanner = new Scanner(System.in);
         SortAbleImpl sortAble = new SortAbleImpl();
         FindAbleImpl findAble = new FindAbleImpl();
         String number = "null";
         while (!number.equals("x")){
             commands();
+            System.out.println("Write my name to start! (ex: Syimyk)");
+            scanner.nextLine();
             System.out.println("Choose a command: ");
-            number = in.nextLine();
+            number = scanner.nextLine();
             try{
                 if (Character.isDigit(number.charAt(0))){
                     switch (number){
@@ -50,7 +53,7 @@ public class Main {
                         case "7" -> findAble.findMoviesByDirector();
                         case "8" -> findAble.findMoviesByYear();
                         case "9" -> findAble.findMoviesAndRoleByActor();
-                        case "10" -> sortAble.showActorRoles();
+                        case "10" -> sortAble.showActorRoles1();
                     }
                 }else {
                     throw new RuntimeException();
@@ -59,6 +62,5 @@ public class Main {
                 System.out.println("It is not a button");
             }
         }
-
     }
 }
