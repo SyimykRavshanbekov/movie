@@ -7,5 +7,11 @@ public class Director {
     public String getFullName() {
         return fullName;
     }
+
+    @Override
+    public String toString() {
+        return
+                "\nfullName = '" + fullName ;
+    }
 }
 

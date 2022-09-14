@@ -2,8 +2,8 @@ package com.company.models;
 
 import java.util.List;
 
-public class Movie {
-
+public class
+Movie {
     private String name;
     private int year;
     private String description;
@@ -41,12 +41,11 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "Movies{" +
-                "name='" + name + '\'' +
-                ", year=" + year +
-                ", description='" + description + '\'' +
-                ", director=" + director +
-                ", cast=" + cast +
-                '}';
+        return
+                "name = '" + name +
+                "\nyear = " + year +
+                "\ndescription ='" + description+
+                "\ndirector = " + director.getFullName() +
+                "\n:--------------------CAST------------------------" + cast;
     }
 }

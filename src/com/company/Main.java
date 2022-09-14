@@ -1,6 +1,8 @@
 package com.company;
 
 import com.company.models.Movie;
+import com.company.services.impl.FindAbleImpl;
+import com.company.services.impl.SortAbleImpl;
 
 import java.util.List;
 import java.util.Scanner;
@@ -8,9 +10,8 @@ import java.util.Scanner;
 public class Main {
 
     private static Scanner in = new Scanner(System.in);
-
     public static void main(String[] args) {
-        
+        mainMethod();
     }
 
 
@@ -29,8 +30,35 @@ public class Main {
         System.out.println("---------------------------------------------");
     }
 
-    static String button(){
-        System.out.println("Choose a command: ");
-        return in.nextLine();
+    static void mainMethod(){
+        SortAbleImpl sortAble = new SortAbleImpl();
+        FindAbleImpl findAble = new FindAbleImpl();
+        String number = "null";
+        while (!number.equals("x")){
+            commands();
+            System.out.println("Choose a command: ");
+            number = in.nextLine();
+            try{
+                if (Character.isDigit(number.charAt(0))){
+                    switch (number){
+                        case "1" -> sortAble.printAllMovies();
+                        case "2" -> sortAble.findMovie();
+                        case "3" -> sortAble.sortByYear();
+                        case "4" -> sortAble.sortByName();
+                        case "5" -> sortAble.sortByDirector();
+                        case "6" -> findAble.findMoviesByActor();
+                        case "7" -> findAble.findMoviesByDirector();
+                        case "8" -> findAble.findMoviesByYear();
+                        case "9" -> findAble.findMoviesAndRoleByActor();
+                        case "10" -> sortAble.showActorRoles();
+                    }
+                }else {
+                    throw new RuntimeException();
+                }
+            } catch (RuntimeException e) {
+                System.out.println("It is not a button");
+            }
+        }
+
     }
 }

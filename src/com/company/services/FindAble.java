@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface FindAble {
 
-    void findMoviesByActor(String actorName);
+    void findMoviesByActor();
 
-    void findMoviesByDirector(String directorName);
+    void findMoviesByDirector();
 
-    void findMoviesByYear(int year);
+    void findMoviesByYear();
 
-    void findMoviesAndRoleByActor(String actorName);
+    void findMoviesAndRoleByActor();
 
-    void showActorRoles(String actor);
+    void showActorRoles();
 }
